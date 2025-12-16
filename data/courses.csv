@@ -1,0 +1,9 @@
+course_id,course_name,department,credits
+CS101,Introduction to Programming,Computer Science,4
+CS201,Data Structures,Computer Science,4
+CS301,Database Systems,Computer Science,3
+EC101,Basic Electronics,Electronics,4
+EC201,Digital Circuits,Electronics,3
+ME101,Engineering Mechanics,Mechanical,4
+EE101,Electrical Circuits,Electrical Engineering,4
+EE201,Power Systems,Electrical Engineering,3

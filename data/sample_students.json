@@ -1,0 +1,37 @@
+{
+    "description": "Raw sample student data for ETL testing. ETL must: split name, add DOB, add phone.",
+    "students": [
+        {
+            "name": "Aditya Kapoor",
+            "email": "aditya.kapoor@university.edu",
+            "date_of_birth": "2004-03-10",
+            "year": 2,
+            "phone_number": "+91-9876543230",
+            "department": "Computer Science"
+        },
+        {
+            "name": "Ritu Sharma",
+            "email": "ritu.sharma@university.edu",
+            "date_of_birth": "2003-07-22",
+            "year": 3,
+            "phone_number": "+91-9876543231",
+            "department": "Electronics"
+        },
+        {
+            "name": "Mohit Agarwal",
+            "email": "mohit.agarwal@university.edu",
+            "date_of_birth": "2005-01-15",
+            "year": 1,
+            "phone_number": "+91-9876543232",
+            "department": "Mechanical"
+        },
+        {
+            "name": "Kavya Menon",
+            "email": "kavya.menon@university.edu",
+            "date_of_birth": "2004-11-08",
+            "year": 2,
+            "phone_number": "+91-9876543233",
+            "department": "Electrical Engineering"
+        }
+    ]
+}

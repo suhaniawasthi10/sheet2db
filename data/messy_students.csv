@@ -1,0 +1,17 @@
+student_id,first_name,last_name,email,date_of_birth,year,phone_number,department
+1,Rahul,Sharma,rahul.sharma@university.edu,2004-05-15,2,+91-9876543210,Computer Science
+2,Priya,Patel,PRIYA.PATEL@UNIVERSITY.EDU,2003-08-22,3,9876543211,CS
+3,Amit,Kumar,amit.kumar@university.edu,2005-02-10,1,+91 9876543212,Computer Science
+4,Rahul,Sharma,rahul.sharma@university.edu,2004-05-15,2,+91-9876543210,Computer Science
+5,Sneha,Gupta,,2004-11-30,2,9876543213,Electronics
+6,Vikram,Singh,vikram.singh@university.edu,2002-01-18,5,+91-9876543214,Mechanical
+7,Ananya,Reddy,ananya.reddy@university.edu,15/07/2004,2,+91-9876543215,Comp Sci
+8,Karthik,Nair,karthik.nair@university.edu,2003-09-12,three,+91-9876543216,Electronics
+9,Divya,Menon,divya.menon@university.edu,2005-04-08,1,+91-9876543217,electrical
+10,Rohan,Das,rohan.das@university.edu,2004-06-20,2,+91-9876543218,Electrical Engineering
+11,Neha,Joshi,neha.joshi@university.edu,2003-12-05,3,+91-9876543219,MECHANICAL
+12,Arjun,Iyer,arjun.iyer@university,2004-03-25,4,9876543220,Computer Science
+13,Pooja,Verma,pooja.verma@university.edu,2004-09-15,2,+91-9876543221,
+14,Sanjay,Rao,sanjay.rao@university.edu,2005-01-08,1,+91-9876543222,Electronics
+15,Meera,Krishnan,meera.krishnan@university.edu,2004-10-20,2,+91-9876543223,Computer Science
+16,Arun,Nambiar,arun.nambiar@university.edu,2015-05-10,2,+91-9876543224,Computer Science

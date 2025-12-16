@@ -1,0 +1,16 @@
+enrollment_id,student_email,course_code,grade,enrollment_date
+1,rahul.sharma@university.edu,CS101,A,2024-01-15
+2,rahul.sharma@university.edu,CS201,A-,2024-01-15
+3,priya.patel@university.edu,CS301,A-,15/01/2024
+4,amit.kumar@university.edu,CS101,B,"Jan 15, 2024"
+5,sneha.gupta@university.edu,EC101,A,2024-01-15
+6,vikram.singh@university.edu,ME101,C,2024-01-15
+7,ananya.reddy@university.edu,CS201,B+,2024-01-15
+8,karthik.nair@university.edu,EC201,A-,2024-01-15
+9,divya.menon@university.edu,EE101,B,2024-01-15
+10,rohan.das@university.edu,EE201,A,2024-01-15
+11,neha.joshi@university.edu,ME101,A-,2024-01-15
+12,arjun.iyer@university,CS301,B+,2024-01-15
+13,unknown.student@university.edu,CS101,A,2024-01-15
+14,rahul.sharma@university.edu,CS101,A,2024-01-16
+15,sanjay.rao@university.edu,XX999,B,2024-01-15

@@ -1,0 +1,43 @@
+{
+    "description": "Validated student registrations from Google Apps Script",
+    "exportedAt": "2025-12-16T02:57:00.000Z",
+    "count": 4,
+    "students": [
+        {
+            "firstName": "Priya",
+            "lastName": "Verma",
+            "email": "priya.verma@university.edu",
+            "dateOfBirth": "2004-05-15",
+            "year": 2,
+            "phoneNumber": "+91-9876543240",
+            "department": "Computer Science"
+        },
+        {
+            "firstName": "Arjun",
+            "lastName": "Patel",
+            "email": "arjun.patel@university.edu",
+            "dateOfBirth": "2003-08-20",
+            "year": 3,
+            "phoneNumber": "+91-9876543241",
+            "department": "Electronics"
+        },
+        {
+            "firstName": "Sneha",
+            "lastName": "Kumar",
+            "email": "sneha.kumar@university.edu",
+            "dateOfBirth": "2005-02-10",
+            "year": 1,
+            "phoneNumber": "+91-9876543242",
+            "department": "Mechanical"
+        },
+        {
+            "firstName": "Rahul",
+            "lastName": "Singh",
+            "email": "rahul.singh@university.edu",
+            "dateOfBirth": "2004-12-05",
+            "year": 2,
+            "phoneNumber": "+91-9876543243",
+            "department": "Electrical Engineering"
+        }
+    ]
+}

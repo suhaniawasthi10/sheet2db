@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Environment variables (contains secrets!)
+.env
+.env.local
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE/Editor
+.vscode/
+.idea/
+
+# Build outputs
+dist/
+build/
+
+# Google credentials (if downloaded locally)
+credentials.json
+token.json
