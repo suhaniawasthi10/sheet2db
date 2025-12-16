@@ -36,23 +36,114 @@ function processNewStudent(record, row, sheet) {
   const previousStatus = getStatus(sheet, row);
   if (previousStatus === 'Registered') return; // Already registered
 
+  // Check if ALL required fields are filled before processing
+  // This prevents triggering on incomplete rows
+  const requiredFields = ['firstName', 'lastName', 'email', 'dateOfBirth', 'year', 'phoneNumber', 'department'];
+  const isRowComplete = requiredFields.every(field => {
+    const value = record[field];
+    return value !== undefined && value !== null && value.toString().trim() !== '';
+  });
+  
+  if (!isRowComplete) {
+    Logger.log('⏳ Row ' + row + ' incomplete - waiting for all fields');
+    return; // Don't process until all fields are filled
+  }
+
   clearStatus(sheet, row);
+  
+  // Log row being processed
+  Logger.log('🔔 Row edited: ' + row);
 
   const validation = validateStudent(record);
   if (!validation.isValid) {
+    Logger.log('❌ Validation failed: ' + validation.errors.join('; '));
     markRow(sheet, row, 'Invalid', validation.errors.join('; '));
+    // Send immediate email notification for invalid row
+    sendErrorEmail(row, record.email || 'N/A', 'Validation Failed', validation.errors);
     return;
   }
 
-  const response = sendToAPI(transform(record));
+  const transformedData = transform(record);
+  
+  // Log data being sent
+  Logger.log('📤 Sending to API: ' + record.email);
+  Logger.log('📋 Data: ' + JSON.stringify(transformedData));
+  
+  const response = sendToAPI(transformedData);
 
   if (response.success) {
     const studentId = response.data?.data?.studentId || 
                       response.data?.studentId || 
                       'N/A';
+    // Log successful registration
+    Logger.log('✅ API Response Code: 201');
+    Logger.log('📥 API Response Body: ' + JSON.stringify(response.data));
+    Logger.log('✅ Registered! Student ID: ' + studentId);
     markRow(sheet, row, 'Registered', `Student ID: ${studentId}`);
+    // Send success email notification
+    sendSuccessEmail(row, record.email, studentId);
+  } else if (response.error && response.error.toLowerCase().includes('email already exists')) {
+    // Email exists = student already registered, treat as success
+    Logger.log('ℹ️ Student already registered with this email');
+    markRow(sheet, row, 'Registered', 'Already in database');
   } else {
+    Logger.log('❌ API Error: ' + response.error);
     markRow(sheet, row, 'Error', response.error);
+    // Send immediate email notification for API error
+    sendErrorEmail(row, record.email || 'N/A', 'API Error', [response.error]);
+  }
+}
+
+/* ================= SUCCESS EMAIL ================= */
+
+function sendSuccessEmail(row, studentEmail, studentId) {
+  try {
+    const subject = `✅ Student Registered Successfully - ${studentEmail}`;
+    const body = `
+A new student has been registered successfully!
+
+📍 Row: ${row}
+📧 Email: ${studentEmail}
+🆔 Student ID: ${studentId}
+
+---
+Spreadsheet: ${SpreadsheetApp.getActive().getUrl()}
+Timestamp: ${new Date().toLocaleString()}
+    `.trim();
+
+    MailApp.sendEmail(CONFIG.NOTIFICATION_EMAIL, subject, body);
+    Logger.log('📧 Success email sent for row ' + row);
+  } catch (e) {
+    Logger.log('⚠️ Failed to send success email: ' + e.toString());
+  }
+}
+
+/* ================= IMMEDIATE ERROR EMAIL ================= */
+
+function sendErrorEmail(row, studentEmail, errorType, errors) {
+  try {
+    const subject = `⚠️ Student Registration ${errorType} - Row ${row}`;
+    const body = `
+A student registration issue was detected:
+
+📍 Row: ${row}
+📧 Student Email: ${studentEmail}
+❌ Error Type: ${errorType}
+
+Issues Found:
+${errors.map((e, i) => `  ${i + 1}. ${e}`).join('\n')}
+
+Please review and correct the data in the Google Sheet.
+
+---
+Spreadsheet: ${SpreadsheetApp.getActive().getUrl()}
+Timestamp: ${new Date().toLocaleString()}
+    `.trim();
+
+    MailApp.sendEmail(CONFIG.NOTIFICATION_EMAIL, subject, body);
+    Logger.log(`📧 Error email sent for row ${row}`);
+  } catch (e) {
+    Logger.log(`⚠️ Failed to send error email: ${e.toString()}`);
   }
 }
 
@@ -73,12 +164,26 @@ function validateStudent(r) {
   }
   if (!r.dateOfBirth) {
     errors.push('dateOfBirth is required');
+  } else {
+    // Validate age: must be at least 16 years old
+    const dob = new Date(r.dateOfBirth);
+    const today = new Date();
+    const age = Math.floor((today - dob) / (365.25 * 24 * 60 * 60 * 1000));
+    if (age < 16) {
+      errors.push('Student must be at least 16 years old (currently ' + age + ')');
+    }
   }
   if (!r.year || isNaN(r.year) || r.year < 1 || r.year > 4) {
     errors.push('year must be 1-4');
   }
   if (!r.phoneNumber || r.phoneNumber.toString().trim() === '') {
     errors.push('phoneNumber is required');
+  } else {
+    // Validate phone format: must have at least 10 digits, allow +, -, spaces
+    const digitsOnly = r.phoneNumber.toString().replace(/[\s\-\+]/g, '');
+    if (!/^\d{10,15}$/.test(digitsOnly)) {
+      errors.push('phoneNumber must have 10-15 digits (got ' + digitsOnly.length + ')');
+    }
   }
   if (!r.department || r.department.toString().trim() === '') {
     errors.push('department is required');

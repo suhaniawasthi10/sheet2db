@@ -13,7 +13,10 @@
     "init:db": "node scripts/init_db.js",
     "etl": "node etl/index.js",
     "test:sql": "node scripts/run_sql_tests.js",
-    "start:api": "node api/server.js"
+    "start:api": "node api/server.js",
+    "task7:etl": "node etl/task7/index.js",
+    "task7:incremental": "node etl/task7/incremental.js",
+    "task7:load": "node scripts/load_task7_data.js"
   },
   "author": "",
   "license": "ISC",
@@ -24,7 +27,8 @@
     "csv-parse": "^6.1.0",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
-    "pg": "^8.16.3"
+    "pg": "^8.16.3",
+    "pg-copy-streams": "^7.0.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.11"
