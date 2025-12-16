@@ -1,4 +1,4 @@
-# Sheet2DB 📊➡️🗄️
+# Sheet2DB 
 
 Automated student registration pipeline: Google Sheets → NeonDB
 
