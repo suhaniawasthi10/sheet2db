@@ -204,8 +204,6 @@ sheet2db/
 ├── docs/
 │   ├── task6-interview-script.md           # Google Apps Script demo guide
 │   ├── final-presentation.md               # Complete project documentation
-│   ├── FINAL_PRESENTATION_ENHANCED.md      # Enhanced presentation
-│   ├── PRESENTATION_CUSTOMIZATION_GUIDE.md # Presentation tips
 │   ├── data_audit.md                       # Data quality analysis
 │   └── sql_guide.md                        # SQL best practices
 ├── etl/
